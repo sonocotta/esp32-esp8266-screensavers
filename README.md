@@ -20,12 +20,30 @@ Generally VGA works much faster, so TFT optimisation are definitely possible and
 
 ## Starfield
 
+![DSC_0108.MOV.gif](/images/DSC_0108.MOV.gif)
+![DSC_0102.MOV.gif](/images/DSC_0102.MOV.gif)
+
 ## Tunnel
+
+![DSC_0109.MOV.gif](/images/DSC_0109.MOV.gif)
+![DSC_0103.MOV.gif](/images/DSC_0103.MOV.gif)
 
 ## Firewall
 
+![DSC_0110.MOV.gif](/images/DSC_0110.MOV.gif)
+![DSC_0104.MOV.gif](/images/DSC_0104.MOV.gif)
+
 ## Firework
+
+![DSC_0112.MOV.gif](/images/DSC_0112.MOV.gif)
+![DSC_0105.MOV.gif](/images/DSC_0105.MOV.gif)
 
 ## Shadebobs
 
+![DSC_0113.MOV.gif](/images/DSC_0113.MOV.gif)
+![DSC_0106.MOV.gif](/images/DSC_0106.MOV.gif)
+
 ## Plasma
+
+![DSC_0114.MOV.gif](/images/DSC_0117.MOV.gif)
+![DSC_0107.MOV.gif](/images/DSC_0104.MOV.gif)
