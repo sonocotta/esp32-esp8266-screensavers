@@ -46,4 +46,4 @@ Generally VGA works much faster, so TFT optimisation are definitely possible and
 ## Plasma
 
 ![DSC_0114.MOV.gif](/images/DSC_0114.MOV.gif)
-![DSC_0107.MOV.gif](/images/DSC_0104.MOV.gif)
+![DSC_0107.MOV.gif](/images/DSC_0107.MOV.gif)
