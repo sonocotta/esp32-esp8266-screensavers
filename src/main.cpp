@@ -16,14 +16,23 @@ const String TAG = "main";
 
 OUT_DEVICECLASS *out = new OUT_DEVICECLASS();
 
-#ifdef ESP8266 
+#ifdef ESP8266
 #define ANIMATION_COUNT 4 // unable to solve out of memory issues for now
 #else
 #define ANIMATION_COUNT 6
 #endif
 
+#if defined(TOUCH_CS) && defined(TOUCH_IRQ)
+#define TOUCH_ENABLED
+#include <XPT2046_Touchscreen.h>
+XPT2046_Touchscreen touch(TOUCH_CS, TOUCH_IRQ);
+
+#define TOUCH_DEBOUNCE_TIME 250
+uint32_t touched_at = 0;
+#endif
+
 uint8_t animationIndex = 0;
-Screensaver *animation; 
+Screensaver *animation;
 
 uint8_t frameCount = 0;
 uint32_t frameCounterStart = 0;
@@ -41,16 +50,21 @@ void setup()
   pinMode(PIN_SWITCH, INPUT);
 #endif
 
-  #ifdef TFT_ENABLE
+#ifdef TFT_ENABLE
   out->init();
   out->setRotation(TFT_ROTATION);
   out->setSwapBytes(false);
   out->fillScreen(TFT_BLACK);
-  #endif
+#endif
 
-  #ifdef VGA_ENABLE
+#ifdef VGA_ENABLE
   out->init(out->MODE320x240, VGA_RED_PINS, VGA_GREEN_PINS, VGA_BLUE_PINS, VGA_HSYNC, VGA_VSYNC);
-  #endif
+#endif
+
+#ifdef TOUCH_ENABLED
+  touch.begin();
+  touch.setRotation(TFT_ROTATION);
+#endif
 
   frameCounterStart = millis();
 
@@ -105,13 +119,13 @@ void loop(void)
     btn_is_down = true;
   else if (btn_is_down)
   {
-    // key up
-    #ifdef TFT_ENABLE
+// key up
+#ifdef TFT_ENABLE
     out->fillScreen(TFT_BLACK);
-    #endif
-    #ifdef VGA_ENABLE
+#endif
+#ifdef VGA_ENABLE
     out->clear();
-    #endif
+#endif
     animationIndex = (animationIndex + 1) % ANIMATION_COUNT;
     switchScreensaver();
     btn_is_down = false;
@@ -125,6 +139,19 @@ void loop(void)
     out->fillScreen(TFT_BLACK);
     animationIndex = (animationIndex + 1) % ANIMATION_COUNT;
     switchScreensaver();
+  }
+#endif
+
+#ifdef TOUCH_ENABLED
+  if (touch.tirqTouched())
+  {
+    if (touch.touched() && (millis() > touched_at + TOUCH_DEBOUNCE_TIME))
+    {
+      touched_at = millis();
+      out->fillScreen(TFT_BLACK);
+      animationIndex = (animationIndex + 1) % ANIMATION_COUNT;
+      switchScreensaver();
+    }
   }
 #endif
 
